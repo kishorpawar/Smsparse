@@ -41,14 +41,6 @@ public class MainActivity extends AppCompatActivity {
         wbView.getSettings().setJavaScriptEnabled(true);
 
         wbView.setWebViewClient(new WebViewClient(){
-//            public void onPageFinished(WebView wv, String url)
-//            {
-//                SmsRead smsRead = new SmsRead();
-//                smsRead.setMainActivityHandler((MainActivity) activity);
-//                IntentFilter callInterceptorIntentFilter =
-//                        new IntentFilter("android.intent.action.ANY_ACTION");
-//                registerReceiver(smsRead, callInterceptorIntentFilter);
-//            }
         });
 //        wbView.loadUrl("http://www.google.com");
         wbView.loadUrl("file:///android_asset/sms.html");
@@ -57,23 +49,23 @@ public class MainActivity extends AppCompatActivity {
     public void callJsFunction(String sms, String sender){
         Log.d(TAG,  ">>>>> "+ sms + " " + sender);
         WebView smsview = (WebView) findViewById(R.id.webView1);
-        smsview.loadUrl("javascript:showSMS(" + sms + "," + sender + ")");
+        smsview.loadUrl("javascript:showSMS('" + sms + "','" + sender + "')");
     }
 
-    public boolean canReadSms(){
-        if(ContextCompat.checkSelfPermission(smsMain, Manifest.permission.READ_SMS)
-                == PackageManager.PERMISSION_GRANTED)
-        {
-            return true;
-        }
-        else{
-            Toast.makeText(smsMain, "Need permissions to read sms", Toast.LENGTH_SHORT);
-            System.exit(0);
-//            ActivityCompat.requestPermissions(smsMain,
-//                    new String[]{Manifest.permission.READ_SMS},
-//                    );
-        }
-
-        return false;
-    }
+//    public boolean canReadSms(){
+//        if(ContextCompat.checkSelfPermission(smsMain, Manifest.permission.READ_SMS)
+//                == PackageManager.PERMISSION_GRANTED)
+//        {
+//            return true;
+//        }
+//        else{
+//            Toast.makeText(smsMain, "Need permissions to read sms", Toast.LENGTH_SHORT);
+//            System.exit(0);
+////            ActivityCompat.requestPermissions(smsMain,
+////                    new String[]{Manifest.permission.READ_SMS},
+////                    );
+//        }
+//
+//        return false;
+//    }
 }
